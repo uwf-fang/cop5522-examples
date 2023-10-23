@@ -11,7 +11,8 @@ void vectorMatrixMultiply(const float* matrix, const float* inputVector,
   __m128 input = _mm_loadu_ps(inputVector);  // Load the input vector
 
   // Perform the vector matrix multiplication
-  // Add all four element-wise products together horizontally
+  // Add all four products together horizontally
+  // Each 128-bit product is added to a single float value
   __m128 result =
       _mm_hadd_ps(_mm_hadd_ps(_mm_mul_ps(row1, input), _mm_mul_ps(row2, input)),
                  _mm_hadd_ps(_mm_mul_ps(row3, input), _mm_mul_ps(row4, input)));
